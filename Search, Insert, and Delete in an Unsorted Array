@@ -1,0 +1,72 @@
+#include <iostream>
+
+// Function to search for an element in an unsorted array
+int search(int arr[], int size, int key) {
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] == key) {
+            return i; // Return the index if the key is found
+        }
+    }
+    return -1; // Return -1 if the key is not found
+}
+
+// Function to insert an element at the end of an unsorted array
+bool insert(int arr[], int &size, int element) {
+    if (size >= MAX_SIZE) {
+        std::cout << "Array is full. Cannot insert element." << std::endl;
+        return false;
+    }
+    arr[size] = element;
+    size++;
+    return true;
+}
+
+// Function to delete an element from an unsorted array
+bool remove(int arr[], int &size, int element) {
+    int index = search(arr, size, element);
+    if (index == -1) {
+        std::cout << "Element not found. Cannot delete." << std::endl;
+        return false;
+    }
+
+    // Shift elements to the left to fill the gap
+    for (int i = index; i < size - 1; ++i) {
+        arr[i] = arr[i + 1];
+    }
+    size--;
+    return true;
+}
+
+int main() {
+    const int MAX_SIZE = 100;
+    int arr[MAX_SIZE] = {5, 2, 9, 1, 5};
+    int size = 5;
+
+    // Search for an element
+    int searchKey = 9;
+    int searchResult = search(arr, size, searchKey);
+    if (searchResult != -1) {
+        std::cout << searchKey << " found at index " << searchResult << std::endl;
+    } else {
+        std::cout << searchKey << " not found in the array." << std::endl;
+    }
+
+    // Insert an element
+    int insertElement = 7;
+    insert(arr, size, insertElement);
+    std::cout << insertElement << " inserted at the end of the array." << std::endl;
+
+    // Delete an element
+    int deleteElement = 2;
+    remove(arr, size, deleteElement);
+    std::cout << deleteElement << " deleted from the array." << std::endl;
+
+    // Print the updated array
+    std::cout << "Updated Array: ";
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
