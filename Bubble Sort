@@ -12,7 +12,7 @@ for(int j=0;j<size;j++)
         swap(arr[j],arr[j+1]);
     }
 }
- 
+  
 
 }
 
