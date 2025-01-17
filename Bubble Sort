@@ -16,7 +16,7 @@ for(int j=0;j<size;j++)
 
 }
 
-}
+} 
 void display(int arry[],int s)
 {
     for(int i=0;i<s;i++)
